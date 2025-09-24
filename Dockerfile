@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/ubi:9.6-1758184894
+FROM registry.access.redhat.com/ubi9/ubi:latest
 
 LABEL description="This tool is called comp2..."
 LABEL io.k8s.description="This tool..."
