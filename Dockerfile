@@ -9,9 +9,16 @@ LABEL \
   io.k8s.display-name="releng-test-product" \
   io.openshift.tags="releng-test-product"
 
-RUN mkdir -p /releases && \
-    echo 'hello world' | gzip > /releases/releng-test-product-binaries-windows-amd64.gz && \
-    echo 'hello world' | gzip > /releases/releng-test-product-binaries-linux-amd64.gz && \
-    echo 'hello world' | gzip > /releases/releng-test-product-binaries-darwin-amd64.gz && \
-    echo 'hello world' | gzip > /releases/releng-test-product-binaries-linux-arm64.gz && \
-    echo 'hello world' | gzip > /releases/releng-test-product-binaries-darwin-arm64.gz
+RUN set -e; \
+    mkdir -p /releases; \
+    echo 'hello world' > tmp.txt; \
+    for platform in \
+      windows-amd64 \
+      linux-amd64 \
+      darwin-amd64 \
+      linux-arm64 \
+      darwin-arm64 \
+    ; do \
+      tar zcf /releases/releng-test-product-binaries-${platform}.tar.gz tmp.txt; \
+    done; \
+    rm -f tmp.txt
