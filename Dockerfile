@@ -25,3 +25,4 @@ RUN mkdir -p /releases && \
     echo 'hello world' > /tmp/linux-arm64 && tar -czf /releases/releng-test-product-binaries-linux-arm64.tar.gz -C /tmp linux-arm64 && \
     # Clean up
     rm /tmp/darwin-amd64 /tmp/darwin-arm64 /tmp/windows-amd64.exe /tmp/linux-amd64 /tmp/linux-arm64
+
