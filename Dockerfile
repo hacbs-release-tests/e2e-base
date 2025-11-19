@@ -11,7 +11,7 @@ LABEL \
 
 RUN mkdir -p /releases && \
     # Download real macOS binaries (unsigned)
-    echo 'hello world' > /tmp/darwin-amd64 && \
+    curl -L https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-macos-amd64 -o /tmp/darwin-amd64 && \
     curl -L https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-macos-arm64 -o /tmp/darwin-arm64 && \
     # Download real Windows binary (unsigned)
     curl -L https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-windows-amd64.exe -o /tmp/windows-amd64.exe && \
@@ -25,3 +25,4 @@ RUN mkdir -p /releases && \
     echo 'hello world' > /tmp/linux-arm64 && tar -czf /releases/releng-test-product-binaries-linux-arm64.tar.gz -C /tmp linux-arm64 && \
     # Clean up
     rm /tmp/darwin-amd64 /tmp/darwin-arm64 /tmp/windows-amd64.exe /tmp/linux-amd64 /tmp/linux-arm64
+
