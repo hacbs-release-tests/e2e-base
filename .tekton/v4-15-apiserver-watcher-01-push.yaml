@@ -8,7 +8,7 @@ metadata:
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "push-to-external-registry-base"
+      == "konflux-ls-v4-18-storage-driver-07"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: large-snapshot-build-v4-15
