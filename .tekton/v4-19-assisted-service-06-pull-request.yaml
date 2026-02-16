@@ -9,7 +9,7 @@ metadata:
     pipelinesascode.tekton.dev/cancel-in-progress: "true"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "push-to-external-registry-base"
+      == "konflux-ls-v4-19-assisted-service-06"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: large-snapshot-build-v4-19
