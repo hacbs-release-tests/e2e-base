@@ -8,13 +8,13 @@ metadata:
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "konflux-ls-v4-16-apiserver-watcher-01"
+      == "konflux-ls-v4-16-v4-15-autoscaler-operator-17"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: large-snapshot-build-v4-15
-    appstudio.openshift.io/component: v4-15-apiserver-watcher-01
+    appstudio.openshift.io/component: v4-15-autoscaler-operator-17
     pipelines.appstudio.openshift.io/type: build
-  name: v4-15-apiserver-watcher-01-on-push
+  name: v4-15-autoscaler-operator-17-on-push
   namespace: dev-release-team-tenant
 spec:
   params:
@@ -23,7 +23,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads-stage/dev-release-team-tenant/v4-15-apiserver-watcher-01:{{revision}}
+    value: quay.io/redhat-user-workloads-stage/dev-release-team-tenant/v4-15-autoscaler-operator-17:{{revision}}
   - name: dockerfile
     value: Dockerfile
   - name: path-context
@@ -574,7 +574,7 @@ spec:
     - name: netrc
       optional: true
   taskRunTemplate:
-    serviceAccountName: build-pipeline-v4-15-apiserver-watcher-01
+    serviceAccountName: build-pipeline-v4-15-autoscaler-operator-17
   workspaces:
   - name: git-auth
     secret:
