@@ -2,8 +2,9 @@ FROM registry.access.redhat.com/ubi9/ubi:latest
 
 RUN dnf install -y python3 python3-pip vim git wget && dnf clean all
 
-# Generate random-sized image (1-5 GB)
-ARG IMAGE_SIZE_MB=1342
+# Generate random-sized image (300 MB - 1.5 GB)
+# Size constrained by build pod memory to avoid OOM kills during commit
+ARG IMAGE_SIZE_MB=900
 RUN SIZE_MB=${IMAGE_SIZE_MB} && \
     echo "========================================" && \
     echo "Building large test image: ${SIZE_MB} MB" && \
