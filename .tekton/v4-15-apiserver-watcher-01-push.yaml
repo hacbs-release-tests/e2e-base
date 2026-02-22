@@ -35,6 +35,8 @@ spec:
         - linux/ppc64le
     - name: build-source-image
       value: "true"
+    - name: build-image-index
+      value: "true"
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while maintaining trust after pipeline customization.
