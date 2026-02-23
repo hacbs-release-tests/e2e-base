@@ -9,6 +9,9 @@ metadata:
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-event: "[push]"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "konflux-ls-template"
+    pipelinesascode.tekton.dev/skip-update: "true"
+    konflux.dev/managed-by: "rh-advisories-large-snapshot-test"
+    konflux.dev/skip-automated-updates: "true"
     kueue.konflux-ci.dev/resource-linux/amd64: "true"
     kueue.konflux-ci.dev/resource-linux/arm64: "true"
     kueue.konflux-ci.dev/resource-linux/s390x: "true"
@@ -18,6 +21,7 @@ metadata:
     appstudio.openshift.io/application: large-snapshot-build-template
     appstudio.openshift.io/component: template-component
     pipelines.appstudio.openshift.io/type: build
+    konflux.dev/managed: "manual"
   name: template-component-on-push
   namespace: dev-release-team-tenant
 spec:
