@@ -8,7 +8,7 @@ metadata:
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-event: "[push]"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "large-snapshot-template"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "large-snapshot-v4-17-storage-driver-operator-08"
     pipelinesascode.tekton.dev/skip-update: "true"
     konflux.dev/managed-by: "rh-advisories-large-snapshot-test"
     konflux.dev/skip-automated-updates: "true"
@@ -18,11 +18,11 @@ metadata:
     kueue.konflux-ci.dev/resource-linux/ppc64le: "true"
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: large-snapshot-build-template
-    appstudio.openshift.io/component: template-component
+    appstudio.openshift.io/application: large-snapshot-build-v4-17
+    appstudio.openshift.io/component: v4-17-storage-driver-operator-08
     pipelines.appstudio.openshift.io/type: build
     konflux.dev/managed: "manual"
-  name: template-component-on-push
+  name: v4-17-storage-driver-operator-08-on-push
   namespace: dev-release-team-tenant
 spec:
   params:
