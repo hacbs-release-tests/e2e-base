@@ -1,0 +1,58 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/hacbs-release-tests/e2e-base?rev={{revision}}
+    build.appstudio.redhat.com/commit_sha: '{{revision}}'
+    build.appstudio.redhat.com/target_branch: '{{target_branch}}'
+    pipelinesascode.tekton.dev/cancel-in-progress: "false"
+    pipelinesascode.tekton.dev/max-keep-runs: "3"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "large-snapshot-template"
+    kueue.konflux-ci.dev/resource-linux/amd64: "true"
+    kueue.konflux-ci.dev/resource-linux/arm64: "true"
+    kueue.konflux-ci.dev/resource-linux/s390x: "true"
+    kueue.konflux-ci.dev/resource-linux/ppc64le: "true"
+  creationTimestamp: null
+  labels:
+    appstudio.openshift.io/application: large-snapshot-build-template
+    appstudio.openshift.io/component: template-component
+    pipelines.appstudio.openshift.io/type: build
+  name: template-component-on-push
+  namespace: dev-release-team-tenant
+spec:
+  params:
+    - name: git-url
+      value: '{{source_url}}'
+    - name: revision
+      value: '{{revision}}'
+    - name: output-image
+      value: quay.io/redhat-user-workloads-stage/dev-release-team-tenant/template-component:{{revision}}
+    - name: build-platforms
+      value:
+        - linux/amd64
+        - linux/arm64
+        - linux/s390x
+        - linux/ppc64le
+    - name: dockerfile
+      value: Dockerfile
+    - name: path-context
+      value: .
+    - name: build-source-image
+      value: "true"
+    - name: build-image-index
+      value: "true"
+  pipelineRef:
+    name: docker-build-multi-platform-oci-ta
+    bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:devel
+  workspaces:
+    - name: workspace
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+    - name: git-auth
+      secret:
+        secretName: pipelines-as-code-secret
