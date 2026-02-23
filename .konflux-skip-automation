@@ -1,0 +1,3 @@
+# This branch is managed by rh-advisories-large-snapshot test
+# Do not create automated PAC update PRs
+SKIP_PAC_AUTOMATION=true
