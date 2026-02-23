@@ -8,7 +8,7 @@ metadata:
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-event: "[push]"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "large-snapshot-template"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "large-snapshot-v4-16-storage-driver-operator-08"
     kueue.konflux-ci.dev/resource-linux/amd64: "true"
     kueue.konflux-ci.dev/resource-linux/arm64: "true"
     kueue.konflux-ci.dev/resource-linux/s390x: "true"
