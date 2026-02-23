@@ -1,12 +1,21 @@
 FROM registry.access.redhat.com/ubi9/ubi:latest
 
-LABEL description="This tool is called comp2..."
-LABEL io.k8s.description="This tool..."
-LABEL io.k8s.display-name="comp2"
-LABEL io.openshift.tags="comp2"
-LABEL summary="A comp2 container"
-LABEL scott1="scott1"
-LABEL scott2="scott2"
-LABEL scott3="scott3"
-LABEL scott4="scott4"
-LABEL scott5="scott5"
+RUN dnf install -y python3 python3-pip vim git wget && dnf clean all
+
+# Generate random-sized image (300 MB - 1.5 GB)
+# Size constrained by build pod memory to avoid OOM kills during commit
+ARG IMAGE_SIZE_MB=705
+RUN SIZE_MB=${IMAGE_SIZE_MB} && \
+    echo "========================================" && \
+    echo "Building large test image: ${SIZE_MB} MB" && \
+    echo "========================================" && \
+    dd if=/dev/urandom of=/opt/data.bin bs=1M count=${SIZE_MB} 2>/dev/null && \
+    echo "Image size: ${SIZE_MB} MB" > /opt/size.txt
+
+WORKDIR /app
+COPY . /app/
+
+LABEL test-type="large-snapshot" \
+      size-range="300-1500MB"
+
+CMD ["/bin/bash", "-c", "cat /opt/size.txt && tail -f /dev/null"]
