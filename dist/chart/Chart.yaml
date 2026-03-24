@@ -1,0 +1,9 @@
+---
+apiVersion: v2
+name: rh-push-helm-e2e-fixture
+description: >-
+  Fixture chart for integration-tests/rh-push-helm-chart-to-registry-redhat-io.
+  Version must stay aligned with RPA mapping tags (underscore vs + in OCI).
+type: application
+version: 0.1.0+e2e001
+appVersion: "0.0.1"

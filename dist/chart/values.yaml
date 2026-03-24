@@ -1,0 +1,3 @@
+---
+# Minimal values for e2e Helm OCI build
+replicaCount: 1
