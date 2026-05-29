@@ -1,12 +1,9 @@
-FROM registry.access.redhat.com/ubi9/ubi:9.5-1744101466
+FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
 
-LABEL description="This tool is called comp2..."
-LABEL io.k8s.description="This tool..."
-LABEL io.k8s.display-name="comp2"
-LABEL io.openshift.tags="comp2"
-LABEL summary="A comp2 container"
-LABEL scott1="scott1"
-LABEL scott2="scott2"
-LABEL scott3="scott3"
-LABEL scott4="scott4"
-LABEL scott5="scott5"
+# Component 2 for push-artifacts-to-cdn integration tests.
+# Contains jq 1.6 binaries wrapped in tar.gz archives (expected input format for the pipeline):
+#   - Windows: jq-win64.exe   → e2e-cdn-comp2-windows-amd64.tar.gz
+#   - macOS:   jq-osx-amd64  → e2e-cdn-comp2-darwin-amd64.tar.gz
+#   - Linux:   jq-linux64    → e2e-cdn-comp2-linux-amd64.tar.gz
+# The pipeline extracts the archive, signs the binary, and re-packages (Windows → .zip).
+COPY releases/ /releases/
